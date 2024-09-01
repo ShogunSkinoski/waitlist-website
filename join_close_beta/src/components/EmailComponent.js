@@ -58,7 +58,7 @@ const EmailCapture = () => {
         <div className="logo-container">
           <img src={logo} alt="Company Logo" className="logo" />
         </div>
-        <h1 className="coming-soon">Coming This Summer</h1>
+        <h1 className="coming-soon">Coming Soon</h1>
         <p className="description">Join our exclusive beta and be the first to experience our revolutionary product!</p>
         <p className="total-signups">Total Beta Signups: {totalSignups}</p>
         {!isSubmitted ? (
