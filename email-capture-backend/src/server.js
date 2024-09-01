@@ -10,9 +10,10 @@ const port = process.env.PORT || 3001;
 app.use(bodyParser.json());
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../join_close_beta/build')));
+app.use(express.static(path.join(__dirname, '../../join_close_beta/build')));
 
 const uri = process.env.MONGODB_URI;
+console.log('Connecting to MongoDB:', uri);
 const client = new MongoClient(uri);
 let db;
 
@@ -70,7 +71,7 @@ app.get('/api/total-signups', async (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../join_close_beta/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../../join_close_beta/build', 'index.html'));
 });
 
 app.listen(port, () => {
