@@ -1,14 +1,16 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors());
 app.use(bodyParser.json());
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '../join_close_beta/build')));
 
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
@@ -19,7 +21,6 @@ async function connectToDatabase() {
     await client.connect();
     console.log('Connected to MongoDB');
     db = client.db('betaSignups');
-    // Create a unique index on the email field
     await db.collection('signups').createIndex({ email: 1 }, { unique: true });
   } catch (error) {
     console.error('Failed to connect to MongoDB', error);
@@ -66,6 +67,10 @@ app.get('/api/total-signups', async (req, res) => {
     console.error('Error fetching total signups:', error);
     res.status(500).json({ error: 'Failed to fetch total signups' });
   }
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../join_close_beta/build', 'index.html'));
 });
 
 app.listen(port, () => {

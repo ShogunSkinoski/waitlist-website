@@ -1,56 +1,125 @@
-.email-capture {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  .logo-container {
-    margin-bottom: 1rem;
-  }
-  
-  .logo {
-    max-width: 150px;  /* Adjust this value to fit your logo size */
-    height: auto;
-  }
-  
-  .coming-soon {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  input[type="email"] {
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    padding: 0.5rem 1rem;
-    background-color: #314ca3;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  button:hover {
-    background-color: #314ca3;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-  .total-signups {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 1rem;
-    text-align: center;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #314ca3; /* Main blue color */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.email-capture-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.email-capture-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 150px;
+  height: auto;
+}
+
+.coming-soon {
+  font-size: 28px;
+  color: #314ca3; /* Main blue color */
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 16px;
+  color: #4a4a4a;
+  margin-bottom: 20px;
+}
+
+.total-signups {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  margin-bottom: 15px;
+}
+
+input[type="email"] {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #314ca3; /* Main blue color */
+  border-radius: 25px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  color: #314ca3; /* Main blue color */
+}
+
+input[type="email"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(49, 76, 163, 0.25);
+}
+
+input[type="email"]::placeholder {
+  color: #a0aec0;
+}
+
+button {
+  padding: 12px;
+  background-color: #314ca3; /* Main blue color */
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #263c82; /* Slightly darker blue on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.success-message {
+  color: #314ca3; /* Main blue color */
+  font-weight: 600;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.loading button {
+  animation: pulse 1.5s infinite;
+}

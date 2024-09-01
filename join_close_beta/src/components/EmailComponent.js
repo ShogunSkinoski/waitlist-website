@@ -14,7 +14,7 @@ const EmailCapture = () => {
 
   const fetchTotalSignups = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/total-signups');
+      const response = await fetch('/api/total-signups');
       if (!response.ok) {
         throw new Error('Failed to fetch total signups');
       }
@@ -29,7 +29,7 @@ const EmailCapture = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/submit-email', {
+      const response = await fetch('/api/submit-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,34 +53,36 @@ const EmailCapture = () => {
   };
 
   return (
-    <div className="email-capture">
-      <div className="logo-container">
-        <img src={logo} alt="Company Logo" className="logo" />
-      </div>
-      <p className="coming-soon">Coming this summer</p>
-      <p className="total-signups">Total Beta Signups: {totalSignups}</p>
-      {!isSubmitted ? (
-        <form onSubmit={handleSubmit} className={isLoading ? 'loading' : ''}>
-          <div className="input-container">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              required
-              disabled={isLoading}
-            />
-            <span className="input-focus"></span>
-          </div>
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? 'Joining...' : 'JOIN CLOSED BETA'}
-          </button>
-        </form>
-      ) : (
-        <div className="success-message">
-          <p>Thanks for joining! We'll be in touch soon.</p>
+    <div className="email-capture-container">
+      <div className="email-capture-card">
+        <div className="logo-container">
+          <img src={logo} alt="Company Logo" className="logo" />
         </div>
-      )}
+        <h1 className="coming-soon">Coming This Summer</h1>
+        <p className="description">Join our exclusive beta and be the first to experience our revolutionary product!</p>
+        <p className="total-signups">Total Beta Signups: {totalSignups}</p>
+        {!isSubmitted ? (
+          <form onSubmit={handleSubmit} className={isLoading ? 'loading' : ''}>
+            <div className="input-container">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+                disabled={isLoading}
+              />
+            </div>
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? 'Joining...' : 'JOIN CLOSED BETA'}
+            </button>
+          </form>
+        ) : (
+          <div className="success-message">
+            <p>Thanks for joining! We'll be in touch soon.</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
